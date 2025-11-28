@@ -32,14 +32,14 @@ Cosmic shear important probe. B-modes computation as null test
 # Statement of need
 
 `Cosmo-numba` facilate the computation of E/B-modes decomposition using two
-methods. One of them is COSEBIs as presented in [@Schneider_2010]. COSEBIs
+methods. One of them is COSEBIs as presented in @Schneider_2010. COSEBIs
 relies on very high precision computation requirering more than 80 decimal
-numbers. [@Schneider_2010] propose an implementation using `mathematica`.
+numbers. @Schneider_2010 propose an implementation using `mathematica`.
 `cosmo-numba` make use of combination of `sympy` and `mpmath` to reach the
 required precision. This python version enable an easier integration in
 cosmology pipeline and facilate the null tests.
 
-The second decomposition has been presented in [@Schneider_2022].
+The second decomposition has been presented in @Schneider_2022.
 
 # Mathematics
 
