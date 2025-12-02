@@ -28,18 +28,34 @@ bibliography: paper.bib
 # Summary
 
 Cosmic shear important probe. B-modes computation as null test
+This software propose at the same time a user friendly interface and fast
+computation for E-/B-mode decomposition.
 
 # Statement of need
 
-`Cosmo-numba` facilate the computation of E/B-modes decomposition using two
-methods. One of them is COSEBIs as presented in @Schneider_2010. COSEBIs
-relies on very high precision computation requirering more than 80 decimal
-numbers. @Schneider_2010 propose an implementation using `mathematica`.
-`cosmo-numba` make use of combination of `sympy` and `mpmath` to reach the
-required precision. This python version enable an easier integration in
-cosmology pipeline and facilate the null tests.
+`Cosmo-numba` facilate the computation of E-/B-modes decomposition using two
+methods. One of them is the Complete Orthogonal Sets of E-/B-mode Integrals
+(COSEBIs) as presented in @Schneider_2010. The COSEBIs rely on very high
+precision computation requirering more than 80 decimal numbers. @Schneider_2010
+propose an implementation using `mathematica`. `cosmo-numba` make use of
+combination of `sympy` and `mpmath` to reach the required precision. This
+python version enable an easier integration in cosmology pipeline and facilate
+the null tests.
 
-The second decomposition has been presented in @Schneider_2022.
+This software package also include the computation of the  pure-mode
+correlation functions presented in @Schneider_2022. Those integrals have less
+constraints than the COSEBIs but having a fast computation is necessary to
+computing the covariance matrix. One can also include use those correlation
+function for cosmological inference in which case the multiple call to the
+likelihood will also require a fast implementation.
+
+# COSEBIs
+
+The COSEBIs are defined as:
+
+\begin{equation}
+E = \frac{1}{2} \int{0}{\infty} d\theta \theta [T_{+}(\theta)\xi_{+}(\theta) + T_{-}(\theta)\xi_{+}(\theta)]
+\end{equation}
 
 # Mathematics
 
