@@ -54,8 +54,24 @@ likelihood will also require a fast implementation.
 The COSEBIs are defined as:
 
 \begin{equation}
-E = \frac{1}{2} \int_{0}^{\infty} d\theta \theta [T_{+}(\theta)\xi_{+}(\theta) + T_{-}(\theta)\xi_{+}(\theta)]
+E_{n} = \frac{1}{2} \int_{0}^{\infty} d\theta \theta [T_{n,+}(\theta)\xi_{+}(\theta) + T_{n,-}(\theta)\xi_{+}(\theta)] \\
+B_{n} = \frac{1}{2} \int_{0}^{\infty} d\theta \theta [T_{n,+}(\theta)\xi_{+}(\theta) - T_{n,-}(\theta)\xi_{+}(\theta)]
 \end{equation}
+
+where $\xi_{\pm}(\theta)$ are the shear correlation functions, and $T_{n,\pm}$
+are the weight functions for the mode $n$. The complexity is in the computation
+of reside in the computation of the weight functions. `Cosmo-numba` include do
+the computation of the weight functions in logarithmic scale defined by:
+
+\begin{equation}
+T_{n,+}^{\rm{log}}(\theta) = t_{n,+}^{\rm{log}}(z) = N_{n}\sum_{j=0}^{n+1}\bar{c_{nj}}z^{j}
+\end{equation}
+
+whare $z = log(\theta/\theta_{\rm{min}})$, $N_{n}$ is the normalization for the
+mode $n$, and $\bar{c_{jn}}$ are defined iterratively from Bessel functions
+(we refer the readers to @Schneider_2010 for morre details).
+
+![Caption for example figure.\label{fig:Tpm}](cosebis_Tpm_log.png)
 
 # Mathematics
 
