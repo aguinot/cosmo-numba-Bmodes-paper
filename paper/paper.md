@@ -54,7 +54,7 @@ likelihood will also require a fast implementation.
 The COSEBIs are defined as:
 
 \begin{equation}
-E = \frac{1}{2} \int{0}{\infty} d\theta \theta [T_{+}(\theta)\xi_{+}(\theta) + T_{-}(\theta)\xi_{+}(\theta)]
+E = \frac{1}{2} \int_{0}^{\infty} d\theta \theta [T_{+}(\theta)\xi_{+}(\theta) + T_{-}(\theta)\xi_{+}(\theta)]
 \end{equation}
 
 # Mathematics
