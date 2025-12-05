@@ -70,7 +70,7 @@ T_{n,+}^{\rm{log}}(\theta) = t_{n,+}^{\rm{log}}(z) = N_{n}\sum_{j=0}^{n+1}\bar{c
 \end{equation}
 
 whare $z = log(\theta/\theta_{\rm{min}})$, $N_{n}$ is the normalization for the
-mode $n$, and $\bar{c_}{jn}$ are defined iterratively from Bessel functions
+mode $n$, and $\bar{c}_{jn}$ are defined iterratively from Bessel functions
 (we refer the readers to @Schneider_2010 for morre details).
 
 We have validating our implementation against the original version in
