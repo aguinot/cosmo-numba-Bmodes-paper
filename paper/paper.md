@@ -84,7 +84,7 @@ figure \autoref{fig:EB_prec}.
 
 ![In this figure we show the impact of the precision in the computation of the weight functions $T_{\pm}^{\rm{log}}$. For comparion, a precision of 15 correspond to what would be achieve using `numpy` float64. The relative error is computed with respect to the orignal mathematica implementation presented in @Schneider_2010.\label{fig:Tpm_prec}](cosebis_prec_Tpm.png)
 
-![Same as figure \autoref{fig:Tpm_prec} but on the COSEBIs E- and B-mode.\label{fig:EB_prec}](cosebis_prec_EB.png)
+![Same as figure \autoref{fig:Tpm_prec} for the COSEBIs E- and B-mode.\label{fig:EB_prec}](cosebis_prec_EB.png)
 
 # Mathematics
 
