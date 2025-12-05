@@ -66,14 +66,25 @@ of reside in the computation of the weight functions. `Cosmo-numba` include do
 the computation of the weight functions in logarithmic scale defined by:
 
 \begin{equation}
-T_{n,+}^{\rm{log}}(\theta) = t_{n,+}^{\rm{log}}(z) = N_{n}\sum_{j=0}^{n+1}\bar{c_{nj}}z^{j}
+T_{n,+}^{\rm{log}}(\theta) = t_{n,+}^{\rm{log}}(z) = N_{n}\sum_{j=0}^{n+1}\bar{c}_{nj}z^{j}
 \end{equation}
 
 whare $z = log(\theta/\theta_{\rm{min}})$, $N_{n}$ is the normalization for the
-mode $n$, and $\bar{c_{jn}}$ are defined iterratively from Bessel functions
+mode $n$, and $\bar{c_}{jn}$ are defined iterratively from Bessel functions
 (we refer the readers to @Schneider_2010 for morre details).
 
+We have validating our implementation against the original version in
+`Mathematica` from @Schneider_2010. In figure \autoref{fig:Tpm_prec} we show
+the impact of the precsion going from 15 decimals, which correspond to the
+precision one could achieve using float64, up to 80, the precision used in the
+original implementation. We can see that classic float64 precision would not be
+suficient and with a precision of 80 our code recover exactly the results from
+the orignal implementation. Similarly, the impact on the COSEBIs is shown in
+figure \autoref{fig:EB_prec}.
+
 ![In this figure we show the impact of the precision in the computation of the weight functions $T_{\pm}^{\rm{log}}$. For comparion, a precision of 15 correspond to what would be achieve using `numpy` float64. The relative error is computed with respect to the orignal mathematica implementation presented in @Schneider_2010.\label{fig:Tpm_prec}](cosebis_prec_Tpm.png)
+
+![Same as figure \autoref{fig:Tpm_prec} but on the COSEBIs E- and B-mode.\label{fig:EB_prec}](cosebis_prec_EB.png)
 
 # Mathematics
 
