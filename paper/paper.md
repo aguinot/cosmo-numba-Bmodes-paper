@@ -73,7 +73,7 @@ whare $z = log(\theta/\theta_{\rm{min}})$, $N_{n}$ is the normalization for the
 mode $n$, and $\bar{c_{jn}}$ are defined iterratively from Bessel functions
 (we refer the readers to @Schneider_2010 for morre details).
 
-![In this figure we show the impact of the precision in the computation weight function $$T_{\pm}^{\rm{log}}$$. For comparion, a precision of 15 correspond to what would be achieve using `numpy` float64. The relative error is computed with respect to the orignal mathematica implementation presented in @Schneider_2010.\label{fig:Tpm_prec}](cosebis_prec_Tpm.png)
+![In this figure we show the impact of the precision in the computation weight function. For comparion, a precision of 15 correspond to what would be achieve using `numpy` float64. The relative error is computed with respect to the orignal mathematica implementation presented in @Schneider_2010.\label{fig:Tpm_prec}](cosebis_prec_Tpm.png)
 
 # Mathematics
 
