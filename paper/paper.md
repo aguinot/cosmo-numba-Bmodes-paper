@@ -54,10 +54,10 @@ likelihood will also require a fast implementation.
 The COSEBIs are defined as:
 
 \begin{equation}
-E_{n} = \frac{1}{2} \int_{0}^{\infty} d\theta \theta [T_{n,+}(\theta)\xi_{+}(\theta) + T_{n,-}(\theta)\xi_{+}(\theta)]
+E_{n} = \frac{1}{2} \int_{0}^{\infty} d\theta \theta [T_{n,+}(\theta)\xi_{+}(\theta) + T_{n,-}(\theta)\xi_{+}(\theta)];
 \end{equation}
 \begin{equation}
-B_{n} = \frac{1}{2} \int_{0}^{\infty} d\theta \theta [T_{n,+}(\theta)\xi_{+}(\theta) - T_{n,-}(\theta)\xi_{+}(\theta)]
+B_{n} = \frac{1}{2} \int_{0}^{\infty} d\theta \theta [T_{n,+}(\theta)\xi_{+}(\theta) - T_{n,-}(\theta)\xi_{+}(\theta)];
 \end{equation}
 
 where $\xi_{\pm}(\theta)$ are the shear correlation functions, and $T_{n,\pm}$
@@ -66,7 +66,7 @@ of reside in the computation of the weight functions. `Cosmo-numba` include do
 the computation of the weight functions in logarithmic scale defined by:
 
 \begin{equation}
-T_{n,+}^{\rm{log}}(\theta) = t_{n,+}^{\rm{log}}(z) = N_{n}\sum_{j=0}^{n+1}\bar{c}_{nj}z^{j},
+T_{n,+}^{\rm{log}}(\theta) = t_{n,+}^{\rm{log}}(z) = N_{n}\sum_{j=0}^{n+1}\bar{c}_{nj}z^{j};
 \end{equation}
 
 whare $z = log(\theta/\theta_{\rm{min}})$, $N_{n}$ is the normalization for the
@@ -92,23 +92,23 @@ COSEBIs can also be defined from the power spectrum as:
 E_{n} = \int_{0}^{\infty} \frac{d \ell \ell}{Z \pi} P_{E}(\ell)W_{\ell};
 \end{equation}
 \begin{equation}
-B_{n} = \int_{0}^{\infty} \frac{d \ell \ell}{Z \pi} P_{B}(\ell)W_{\ell},
+B_{n} = \int_{0}^{\infty} \frac{d \ell \ell}{Z \pi} P_{B}(\ell)W_{\ell};
 \end{equation}
 
 where $P_{E/B}(\ell)$ is the power spectrum of E- and B-modes and $W_{n}(\ell)$
 are the filter functions which can be computed from $T_{n,+}$ as:
 
 \begin{equation}\label{eq:Wn}
-W_{n}(\ell) = \int_{\theta_{min}}^{\theta_{max}} d\theta \theta T_{n,+}(\theta) J_{0}(\ell \ell)
+W_{n}(\ell) = \int_{\theta_{min}}^{\theta_{max}} d\theta \theta T_{n,+}(\theta) J_{0}(\ell \ell);
 \end{equation}
 
-with $J_{0}(\ell \ell)$ the 0-th order Bessel function. We can see that
-Eq. \autoref{eq:Wn} is an Hankel transform. It can be computed using the
-`FFTLog` algorithm presented in @Hamilton_2000 implemented here in `Numba`.
-Figure \autoref{fig:cosebis_xi_cl} shows the comparison between the COSEBIs
-computed from $\xi_{\pm}(\theta)$ and from $C_{E/B}(\ell)$. We can see that the
-COSEBIs E-modes agrees very well but the B-modes are more stable when computed
-from the $C(\ell)$ space.
+with $J_{0}(\ell \ell)$ the 0-th order Bessel function. The \autoref{eq:Wn} is an
+Hankel transform of order 0. It can be computed using the `FFTLog` algorithm
+presented in @Hamilton_2000 implemented here in `Numba`. The
+\autoref{fig:cosebis_xi_cl} shows the comparison between the COSEBIs computed
+from $\xi_{\pm}(\theta)$ and from $C_{E/B}(\ell)$. We can see that the COSEBIs
+E-modes agrees very well but the B-modes are more stable when computed from the
+$C(\ell)$ space.
 
 ![Comparison of the COSEBIs E- and B-mode computed from $\xi_{\pm}(\theta)$ and $C_{E/B}(\ell)$.\label{fig:cosebis_xi_cl}](cosebis_EB_xi_Cl.png)
 
