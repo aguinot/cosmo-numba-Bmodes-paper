@@ -114,7 +114,12 @@ $C(\ell)$ space.
 
 # Pure-Mode Correlation Functions
 
-Here comes the E-/B-mode decomposition.
+In this section we look into the computation of the pure-mode correlation
+functions as defined in @Schneider_2022. There are defined as follow:
+
+\begin{equation}
+\xi_{+}^{E} = \frac{1}{2} \left[ \xi_{+} + \xi_{-} + \int_{\mathcal{\theta}}^{\mathcal{\theta}} \frac{d \theta}{\theta} \xi_{-}(\theta) \left( 4 - \frac{12\mathcal{\theta}^{2}}{\theta^{2}} \right) \right]
+\end{equation}
 
 # Acknowledgements
 
