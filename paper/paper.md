@@ -98,8 +98,7 @@ B_{n} = \int_{0}^{\infty} \frac{d \ell \ell}{Z \pi} P_{B}(\ell)W_{\ell},
 where $P_{E/B}(\ell)$ is the power spectrum of E- and B-modes and $W_{n}(\ell)$
 are the filter functions which can be computed from $\T_{n,+}$ as:
 
-\begin{equation}
-\label{eq:Wn}
+\begin{equation}\label{eq:Wn}
 W_{n}(\ell) = \int_{\theat_{min}}^{\theta_{max}} d\thata \theta T_{n,+}(\theta) J_{0}(\ell \ell)
 \end{equation}
 
