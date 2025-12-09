@@ -33,7 +33,7 @@ computation for E-/B-mode decomposition.
 
 # Statement of need
 
-`Cosmo-numba` facilate the computation of E-/B-modes decomposition using two
+`Cosmo-numba` facilitate the computation of E-/B-modes decomposition using two
 methods. One of them is the Complete Orthogonal Sets of E-/B-mode Integrals
 (COSEBIs) as presented in @Schneider_2010. The COSEBIs rely on very high
 precision computation requirering more than 80 decimal numbers. @Schneider_2010
@@ -102,8 +102,8 @@ are the filter functions which can be computed from $T_{n,+}$ as:
 W_{n}(\ell) = \int_{\theta_{min}}^{\theta_{max}} d\theta \theta T_{n,+}(\theta) J_{0}(\ell \ell);
 \end{equation}
 
-with $J_{0}(\ell \ell)$ the 0-th order Bessel function. The \autoref{eq:Wn} is an
-Hankel transform of order 0. It can be computed using the `FFTLog` algorithm
+with $J_{0}(\ell \ell)$ the 0-th order Bessel function. The \autoref{eq:Wn} is
+an Hankel transform of order 0. It can be computed using the `FFTLog` algorithm
 presented in @Hamilton_2000 implemented here in `Numba`. The
 \autoref{fig:cosebis_xi_cl} shows the comparison between the COSEBIs computed
 from $\xi_{\pm}(\theta)$ and from $C_{E/B}(\ell)$. We can see that the COSEBIs
@@ -112,45 +112,9 @@ $C(\ell)$ space.
 
 ![Comparison of the COSEBIs E- and B-mode computed from $\xi_{\pm}(\theta)$ and $C_{E/B}(\ell)$.\label{fig:cosebis_xi_cl}](cosebis_EB_xi_Cl.png)
 
-# Mathematics
+# Pure-Mode Correlation Functions
 
-Single dollars ($) are required for inline mathematics e.g. $f(x) = e^{\pi/x}$
-
-Double dollars make self-standing equations:
-
-$$\Theta(x) = \left\{\begin{array}{l}
-0\textrm{ if } x < 0\cr
-1\textrm{ else}
-\end{array}\right.$$
-
-You can also use plain \LaTeX for equations
-\begin{equation}\label{eq:fourier}
-\hat f(\omega) = \int_{-\infty}^{\infty} f(x) e^{i\omega x} dx
-\end{equation}
-and refer to \autoref{eq:fourier} from text.
-
-# Citations
-
-Citations to entries in paper.bib should be in
-[rMarkdown](http://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html)
-format.
-
-If you want to cite a software repository URL (e.g. something on GitHub without a preferred
-citation) then you can do it with the example BibTeX entry below for @fidgit.
-
-For a quick reference, the following citation commands can be used:
-- `@author:2001`  ->  "Author et al. (2001)"
-- `[@author:2001]` -> "(Author et al., 2001)"
-- `[@author1:2001; @author2:2001]` -> "(Author1 et al., 2001; Author2 et al., 2002)"
-
-# Figures
-
-Figures can be included like this:
-![Caption for example figure.\label{fig:example}](figure.png)
-and referenced from text using \autoref{fig:example}.
-
-Figure sizes can be customized by adding an optional second parameter:
-![Caption for example figure.](figure.png){ width=20% }
+Here comes the E-/B-mode decomposition.
 
 # Acknowledgements
 
