@@ -54,10 +54,10 @@ likelihood will also require a fast implementation.
 The COSEBIs are defined as:
 
 \begin{equation}
-E_{n} = \frac{1}{2} \int_{0}^{\infty} d\theta \theta [T_{n,+}(\theta)\xi_{+}(\theta) + T_{n,-}(\theta)\xi_{+}(\theta)];
+E_{n} = \frac{1}{2} \int_{0}^{\infty} d\theta \theta [T_{n,+}(\theta)\xi_{+}(\theta) + T_{n,-}(\theta)\xi_{+}(\theta)]
 \end{equation}
 \begin{equation}
-B_{n} = \frac{1}{2} \int_{0}^{\infty} d\theta \theta [T_{n,+}(\theta)\xi_{+}(\theta) - T_{n,-}(\theta)\xi_{+}(\theta)],
+B_{n} = \frac{1}{2} \int_{0}^{\infty} d\theta \theta [T_{n,+}(\theta)\xi_{+}(\theta) - T_{n,-}(\theta)\xi_{+}(\theta)]
 \end{equation}
 
 where $\xi_{\pm}(\theta)$ are the shear correlation functions, and $T_{n,\pm}$
@@ -100,7 +100,7 @@ are the filter functions which can be computed from $\T_{n,+}$ as:
 
 \begin{equation}
 \label{eq:Wn}
-W_{n}(\ell) = \int_{\theat_{min}}^{\theta_{max}} d\thata \theta T_{n,+}(\theta) \rm{J}_{0}(\ell \ell),
+W_{n}(\ell) = \int_{\theat_{min}}^{\theta_{max}} d\thata \theta T_{n,+}(\theta) \rm{J}_{0}(\ell \ell)
 \end{equation}
 
 with $\rm{J}_{0}(\ell \ell)$ the 0-th order Bessel function. We can see that
