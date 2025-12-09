@@ -96,11 +96,21 @@ B_{n} = \int_{0}^{\infty} \frac{d \ell \ell}{Z \pi} P_{B}(\ell)W_{\ell},
 \end{equation}
 
 where $P_{E/B}(\ell)$ is the power spectrum of E- and B-modes and $W_{n}(\ell)$
-are the filter functions which can be computed from $\T_{n,+}$ as:
+are the filter functions which can be computed from $T_{n,+}$ as:
 
 \begin{equation}\label{eq:Wn}
 W_{n}(\ell) = \int_{\theat_{min}}^{\theta_{max}} d\thata \theta T_{n,+}(\theta) J_{0}(\ell \ell)
 \end{equation}
+
+with $J_{0}(\ell \ell)$ the 0-th order Bessel function. We can see that
+Eq. \autoref{eq:Wn} is an Hankel transform. It can be computed using the
+`FFTLog` algorithm presented in @Hamilton_2000 implemented here in `Numba`.
+Figure \autoref{fig:cosebis_xi_cl} shows the comparison between the COSEBIs
+computed from $\xi_{\pm}(\theta)$ and from $C_{E/B}(\ell)$. We can see that the
+COSEBIs E-modes agrees very well but the B-modes are more stable when computed
+from the $C(\ell)$ space.
+
+![Comparison of the COSEBIs E- and B-mode computed from $\xi_{\pm}(\theta)$ and $C_{E/B}(\ell)$.\label{fig:cosebis_xi_cl}](cosebis_EB_xi_Cl.png)
 
 # Mathematics
 
