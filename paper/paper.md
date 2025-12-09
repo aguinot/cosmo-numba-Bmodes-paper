@@ -52,23 +52,23 @@ likelihood will also require a fast implementation.
 # COSEBIs
 
 The COSEBIs are defined as:
-
+%
 \begin{equation}
 E_{n} = \frac{1}{2} \int_{0}^{\infty} d\theta \theta [T_{n,+}(\theta)\xi_{+}(\theta) + T_{n,-}(\theta)\xi_{+}(\theta)],
 \end{equation}
 \begin{equation}
 B_{n} = \frac{1}{2} \int_{0}^{\infty} d\theta \theta [T_{n,+}(\theta)\xi_{+}(\theta) - T_{n,-}(\theta)\xi_{+}(\theta)];
 \end{equation}
-
+%
 where $\xi_{\pm}(\theta)$ are the shear correlation functions, and $T_{n,\pm}$
 are the weight functions for the mode $n$. The complexity is in the computation
 of reside in the computation of the weight functions. `Cosmo-numba` include do
 the computation of the weight functions in logarithmic scale defined by:
-
+%
 \begin{equation}
 T_{n,+}^{\rm{log}}(\theta) = t_{n,+}^{\rm{log}}(z) = N_{n}\sum_{j=0}^{n+1}\bar{c}_{nj}z^{j};
 \end{equation}
-
+%
 whare $z = log(\theta/\theta_{\rm{min}})$, $N_{n}$ is the normalization for the
 mode $n$, and $\bar{c}_{jn}$ are defined iterratively from Bessel functions
 (we refer the readers to @Schneider_2010 for morre details).
@@ -87,21 +87,21 @@ figure \autoref{fig:EB_prec}.
 ![Same as figure \autoref{fig:Tpm_prec} for the COSEBIs E- and B-mode.\label{fig:EB_prec}](cosebis_prec_EB.png)
 
 COSEBIs can also be defined from the power spectrum as:
-
+%
 \begin{equation}
 E_{n} = \int_{0}^{\infty} \frac{d \ell \ell}{Z \pi} P_{E}(\ell)W_{\ell};
 \end{equation}
 \begin{equation}
 B_{n} = \int_{0}^{\infty} \frac{d \ell \ell}{Z \pi} P_{B}(\ell)W_{\ell};
 \end{equation}
-
+%
 where $P_{E/B}(\ell)$ is the power spectrum of E- and B-modes and $W_{n}(\ell)$
 are the filter functions which can be computed from $T_{n,+}$ as:
-
+%
 \begin{equation}\label{eq:Wn}
 W_{n}(\ell) = \int_{\theta_{min}}^{\theta_{max}} d\theta \theta T_{n,+}(\theta) J_{0}(\ell \ell);
 \end{equation}
-
+%
 with $J_{0}(\ell \ell)$ the 0-th order Bessel function. The \autoref{eq:Wn} is
 an Hankel transform of order 0. It can be computed using the `FFTLog` algorithm
 presented in @Hamilton_2000 implemented here in `Numba`. The
@@ -116,20 +116,21 @@ $C(\ell)$ space.
 
 In this section we look into the computation of the pure-mode correlation
 functions as defined in @Schneider_2022. There are defined as follow:
-
+% xip
 \begin{equation}
 \xi_{+}^{E}(\vartheta) = \frac{1}{2} \left[ \xi_{+}(\vartheta) + \xi_{-}(\vartheta) + \int_{\vartheta}^{\vartheta_{\rm{max}}} \frac{d \theta}{\theta} \xi_{-}(\theta) \left( 4 - \frac{12\vartheta^{2}}{\theta^{2}} \right) \right] - \frac{1}{2} \left[ S_{+}(\vartheta) + S_{-}(\vartheta)\right],
 \end{equation}
 \begin{equation}
-\xi_{+}^{B}(\vartheta) = \frac{1}{2} \left[ \xi_{+}(\vartheta) - \xi_{-}(\vartheta) - \int_{\vartheta}^{\vartheta_{\rm{max}}} \frac{d \theta}{\theta} \xi_{-}(\theta) \left( 4 - \frac{12\vartheta^{2}}{\theta^{2}} \right) \right] - \frac{1}{2} \left[ S_{+}(\vartheta) - S_{-}(\vartheta)\right];
+\xi_{+}^{B}(\vartheta) = \frac{1}{2} \left[ \xi_{+}(\vartheta) - \xi_{-}(\vartheta) - \int_{\vartheta}^{\vartheta_{\rm{max}}} \frac{d \theta}{\theta} \xi_{-}(\theta) \left( 4 - \frac{12\vartheta^{2}}{\theta^{2}} \right) \right] - \frac{1}{2} \left[ S_{+}(\vartheta) - S_{-}(\vartheta)\right],
 \end{equation}
-
+% xim
 \begin{equation}
 \xi_{-}^{E}(\vartheta) = \frac{1}{2} \left[ \xi_{+}(\vartheta) + \xi_{-}(\vartheta) + \int_{\vartheta_{\rm{min}}}^{\vartheta} \frac{d \theta\~\theta}{\vartheta^{2}} \xi_{+}(\theta) \left( 4 - \frac{12\theta^{2}}{\vartheta^{2}} \right) \right] - \frac{1}{2} \left[ V_{+}(\vartheta) + V_{-}(\vartheta)\right],
 \end{equation}
 \begin{equation}
-\xi_{-}^{B}(\vartheta) = \frac{1}{2} \left[ \xi_{+}(\vartheta) - \xi_{-}(\vartheta) + \int_{\vartheta_{\rm{min}}}^{\vartheta} \frac{d \theta\~\theta}{\vartheta^{2}} \xi_{+}(\theta) \left( 4 - \frac{12\theta^{2}}{\vartheta^{2}} \right) \right] - \frac{1}{2} \left[ V_{+}(\vartheta) - V_{-}(\vartheta)\right],
+\xi_{-}^{B}(\vartheta) = \frac{1}{2} \left[ \xi_{+}(\vartheta) - \xi_{-}(\vartheta) + \int_{\vartheta_{\rm{min}}}^{\vartheta} \frac{d \theta\~\theta}{\vartheta^{2}} \xi_{+}(\theta) \left( 4 - \frac{12\theta^{2}}{\vartheta^{2}} \right) \right] - \frac{1}{2} \left[ V_{+}(\vartheta) - V_{-}(\vartheta)\right];
 \end{equation}
+%
 
 # Acknowledgements
 
