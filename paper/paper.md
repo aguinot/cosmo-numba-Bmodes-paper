@@ -131,6 +131,16 @@ functions as defined in @Schneider_2022. There are defined as follow:
 \xi_{-}^{B}(\vartheta) = \frac{1}{2} \left[ \xi_{+}(\vartheta) - \xi_{-}(\vartheta) + \int_{\vartheta_{\rm{min}}}^{\vartheta} \frac{d \theta\~\theta}{\vartheta^{2}} \xi_{+}(\theta) \left( 4 - \frac{12\theta^{2}}{\vartheta^{2}} \right) \right] - \frac{1}{2} \left[ V_{+}(\vartheta) - V_{-}(\vartheta)\right];
 \end{equation}
 %
+where $\xi_{\pm}(\theta)$ correspond to the shear-shear correlation function.
+Regarding the functions $\S_{\pm}(\theta)$ and $V_{\pm}(\theta)$ they are
+themselves defined by integrals and we refer the reader to @Schneider_2022 for
+more details regarding their definition. By contrast with the computation of
+the COSEBIs, the integrals are more stable and strainghtforward to compute but
+still requires some level of precision. This is why we are using the `quads`
+method with a 5-th order interpolation. In addtition, as one can see from the
+equations above, the implementation will require to loop over a range of
+$\vartheta$. This is why having a fast implementation will be required if one
+want to use those correlation functions in cosmological inference for instance.
 
 # Acknowledgements
 
