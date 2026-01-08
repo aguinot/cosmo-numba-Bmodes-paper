@@ -137,10 +137,12 @@ by integrals and we refer the reader to @Schneider_2022 for more details about
 their definition. By contrast with the computation of the COSEBIs, these
 integrals are more stable and strainghtforward to compute but still requires
 some level of precision. This is why we are using the `quads` method with a
-5-th order interpolation. In addtition, as one can see from the equations
-above, the implementation will require to loop over a range of $\vartheta$.
-This is why having a fast implementation will be required if one want to use
-those correlation functions in cosmological inference for instance.
+5-th order spline interpolation. In addtition, as one can see from the
+equations above, the implementation will require to loop over a range of
+$\vartheta$. This is why having a fast implementation will be required if one
+want to use those correlation functions in cosmological inference for instance.
+
+![This figure shows the decomposition of the shear-shear correaltion function in E- and B-modes (and ambiguous mode).\label{fig:pure_EB}](pure_EB.png)
 
 # Acknowledgements
 
