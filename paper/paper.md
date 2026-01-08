@@ -33,21 +33,24 @@ computation for E-/B-mode decomposition.
 
 # Statement of need
 
-`Cosmo-numba` facilitate the computation of E-/B-modes decomposition using two
+The E-/B-mode composition for cosmic shear poses a significant computational 
+challenge given the need for high precision (required to integrate oscillatory 
+functions over a large integration range and achieve accurate results) and speed.
+`Cosmo-numba` meets this need, facilitating the computation of E-/B-modes decomposition using two
 methods. One of them is the Complete Orthogonal Sets of E-/B-mode Integrals
 (COSEBIs) as presented in @Schneider_2010. The COSEBIs rely on very high
-precision computation requirering more than 80 decimal numbers. @Schneider_2010
-propose an implementation using `mathematica`. `cosmo-numba` make use of
+precision computation requiring more than 80 decimal places. @Schneider_2010
+propose an implementation using `mathematica`. `cosmo-numba` uses a 
 combination of `sympy` and `mpmath` to reach the required precision. This
-python version enable an easier integration in cosmology pipeline and facilate
-the null tests.
+python version enables an easier integration within cosmological inference pipelines,
+which are commonly python-based,  and facilitates the null tests.
 
-This software package also include the computation of the  pure-mode
-correlation functions presented in @Schneider_2022. Those integrals have less
-constraints than the COSEBIs but having a fast computation is necessary to
-computing the covariance matrix. One can also include use those correlation
-function for cosmological inference in which case the multiple call to the
-likelihood will also require a fast implementation.
+This software package also enables the computation of the  pure-mode
+correlation functions presented in @Schneider_2022. Those integrals are less numerically 
+challenging than the COSEBIs, but having a fast computation is necessary for
+computing the covariance matrix. One can also use those correlation
+functions for cosmological inference, in which case the large number of calls to the
+likelihood function will also require a fast implementation.
 
 # COSEBIs
 
