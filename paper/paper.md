@@ -102,7 +102,7 @@ where $P_{E/B}(\ell)$ is the power spectrum of E- and B-modes and $W_{n}(\ell)$
 are the filter functions which can be computed from $T_{n,+}$ as:
 
 \begin{equation}\label{eq:Wn}
-W_{n}(\ell) = \int_{\theta_\rm{min}}^{\theta_\rm{max}} d\theta \,\theta T_{n,+}(\theta) J_{0}(\ell\theta);
+W_{n}(\ell) = \int_{\theta_{\rm{min}}}^{\theta_{\rm{max}}} d\theta \,\theta T_{n,+}(\theta) J_{0}(\ell\theta);
 \end{equation}
 
 with $J_{0}(\ell \theta)$ the 0-th order Bessel function. The \autoref{eq:Wn} is
