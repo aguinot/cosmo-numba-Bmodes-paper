@@ -14,7 +14,7 @@ authors:
     orcid: 0000-0003-2271-1527
     affiliation: 1
 affiliations:
- - name: Department of Physics, McWilliams Center for Cosmology, Carnegie Mellon University, Pittsburgh, PA 15213, USA
+ - name: Department of Physics, McWilliams Center for Cosmology and Astrophysics, Carnegie Mellon University, Pittsburgh, PA 15213, USA
    index: 1
 date: 26 November 2025
 bibliography: paper.bib
