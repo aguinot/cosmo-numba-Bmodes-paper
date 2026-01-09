@@ -142,7 +142,7 @@ equations above, the implementation will require to loop over a range of
 $\vartheta$. This is why having a fast implementation will be required if one
 want to use those correlation functions in cosmological inference for instance.
 
-![This figure shows the decomposition of the shear-shear correaltion function in E- and B-modes (and ambiguous mode).\label{fig:pure_EB}](pure_EB.png)
+![This figure shows the decomposition of the shear-shear correaltion functions in E- and B-modes (and ambiguous mode).\label{fig:pure_EB}](pure_EB.png)
 
 # Acknowledgements
 
