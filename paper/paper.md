@@ -33,24 +33,26 @@ computation for E-/B-mode decomposition.
 
 # Statement of need
 
-The E-/B-mode composition for cosmic shear poses a significant computational 
-challenge given the need for high precision (required to integrate oscillatory 
-functions over a large integration range and achieve accurate results) and speed.
-`Cosmo-numba` meets this need, facilitating the computation of E-/B-modes decomposition using two
-methods. One of them is the Complete Orthogonal Sets of E-/B-mode Integrals
-(COSEBIs) as presented in @Schneider_2010. The COSEBIs rely on very high
-precision computation requiring more than 80 decimal places. @Schneider_2010
-propose an implementation using `mathematica`. `cosmo-numba` uses a 
-combination of `sympy` and `mpmath` to reach the required precision. This
-python version enables an easier integration within cosmological inference pipelines,
-which are commonly python-based,  and facilitates the null tests.
+The E-/B-mode composition for cosmic shear poses a significant computational
+challenge given the need for high precision (required to integrate oscillatory
+functions over a large integration range and achieve accurate results) and
+speed. `Cosmo-numba` meets this need, facilitating the computation of
+E-/B-modes decomposition using two methods. One of them is the Complete
+Orthogonal Sets of E-/B-mode Integrals (COSEBIs) as presented in
+@Schneider_2010. The COSEBIs rely on very high precision computation requiring
+more than 80 decimal places. @Schneider_2010 propose an implementation using
+`mathematica`. `cosmo-numba` uses a combination of `sympy` and `mpmath` to
+reach the required precision. This python version enables an easier integration
+within cosmological inference pipelines, which are commonly python-based, and
+facilitates the null tests.
 
 This software package also enables the computation of the  pure-mode
-correlation functions presented in @Schneider_2022. Those integrals are less numerically 
-challenging than the COSEBIs, but having a fast computation is necessary for
-computing the covariance matrix. One can also use those correlation
-functions for cosmological inference, in which case the large number of calls to the
-likelihood function will also require a fast implementation.
+correlation functions presented in @Schneider_2022. Those integrals are less
+numerically challenging than the COSEBIs, but having a fast computation is
+necessary for computing the covariance matrix. One can also use those
+correlation functions for cosmological inference, in which case the large
+number of calls to the likelihood function will also require a fast
+implementation.
 
 # COSEBIs
 
@@ -64,26 +66,26 @@ B_{n} = \frac{1}{2} \int_{0}^{\infty} d\theta\, \theta [T_{n,+}(\theta)\xi_{+}(\
 \end{equation}
 
 where $\xi_{\pm}(\theta)$ are the shear correlation functions, and $T_{n,\pm}$
-are the weight functions for the COSEBI mode $n$. The complexity is in the computation
-of the weight functions. `Cosmo-numba` carries out 
-the computation of the weight functions in a logarithmic scale defined by:
+are the weight functions for the COSEBI mode $n$. The complexity is in the
+computation of the weight functions. `Cosmo-numba` carries out the computation
+of the weight functions in a logarithmic scale defined by:
 
 \begin{equation}
 T_{n,+}^{\rm{log}}(\theta) = t_{n,+}^{\rm{log}}(z) = N_{n}\sum_{j=0}^{n+1}\bar{c}_{nj}z^{j};
 \end{equation}
 
-whare $z = \rm{log}(\theta/\theta_{\rm{min}})$, $N_{n}$ is the normalization for the
-mode $n$, and $\bar{c}_{jn}$ are defined iteratively from Bessel functions
-(we refer the readers to @Schneider_2010 for more details).
+whare $z = \rm{log}(\theta/\theta_{\rm{min}})$, $N_{n}$ is the normalization
+for the mode $n$, and $\bar{c}_{jn}$ are defined iteratively from Bessel
+functions (we refer the readers to @Schneider_2010 for more details).
 
 We have validating our implementation against the original version in
 `Mathematica` from @Schneider_2010. In \autoref{fig:Tpm_prec} we show
-the impact of the precision going from 15 decimal places, which corresponds to the
-precision one could achieve using float64, up to 80 decimal places, the precision used in the
-original `Mathematica` implementation. We can see that classic float64 precision would not be
-suficient, and with a precision of 80 our code exactly recovers the results from
-the original implementation. Similarly, the impact on the COSEBIs is shown in
-\autoref{fig:EB_prec}.
+the impact of the precision going from 15 decimal places, which corresponds to
+the precision one could achieve using float64, up to 80 decimal places, the
+precision used in the original `Mathematica` implementation. We can see that
+classic float64 precision would not be suficient, and with a precision of 80
+our code exactly recovers the results from the original implementation.
+Similarly, the impact on the COSEBIs is shown in \autoref{fig:EB_prec}.
 
 ![In this figure we show the impact of the precision in the computation of the weight functions $T_{\pm}^{\rm{log}}$. For comparion, a precision of 15 corresponds to what would be achieved using `numpy` float64. The relative error is computed with respect to the original `Mathematica` implementation presented in @Schneider_2010.\label{fig:Tpm_prec}](cosebis_prec_Tpm.png)
 
@@ -105,9 +107,9 @@ are the filter functions which can be computed from $T_{n,+}$ as:
 W_{n}(\ell) = \int_{\theta_{\rm{min}}}^{\theta_{\rm{max}}} d\theta \,\theta T_{n,+}(\theta) J_{0}(\ell\theta);
 \end{equation}
 
-with $J_{0}(\ell \theta)$ the 0-th order Bessel function. The \autoref{eq:Wn} is
-a Hankel transform of order 0. It can be computed using the `FFTLog` algorithm
-presented in @Hamilton_2000 implemented here in `Numba`. 
+with $J_{0}(\ell \theta)$ the 0-th order Bessel function. The \autoref{eq:Wn}
+is a Hankel transform of order 0. It can be computed using the `FFTLog`
+algorithm presented in @Hamilton_2000 implemented here in `Numba`.
 \autoref{fig:cosebis_xi_cl} shows the comparison between the COSEBIs computed
 from $\xi_{\pm}(\theta)$ and from $C_{E/B}(\ell)$. We can see that the COSEBI
 E-modes agree very well but the B-modes are more stable when computed from the
@@ -142,14 +144,14 @@ integrals are more stable and straightforward to compute but still require
 some level of precision. This is why we are using the `quads` method with a
 5-th order spline interpolation. In addition, as one can see from the
 equations above, the implementation requires a loop over a range of
-$\vartheta$ values. This is why having a fast implementation will be required if one
-want to use those correlation functions in cosmological inference.
+$\vartheta$ values. This is why having a fast implementation will be required
+if one want to use those correlation functions in cosmological inference.
 
 ![This figure shows the decomposition of the shear-shear correaltion functions in E- and B-modes (and ambiguous mode).\label{fig:pure_EB}](pure_EB.png)
 
 # Acknowledgements
 
-The authors acknowledge the support of a grant from the Simons Foundation (Simons Investigator in
-Astrophysics, Award ID 620789).
+The authors acknowledge the support of a grant from the Simons Foundation
+(Simons Investigator in Astrophysics, Award ID 620789).
 
 # References
