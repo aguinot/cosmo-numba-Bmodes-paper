@@ -27,9 +27,14 @@ bibliography: paper.bib
 
 # Summary
 
-Cosmic shear important probe. B-modes computation as null test
-This software propose at the same time a user friendly interface and fast
-computation for E-/B-mode decomposition.
+Weak gravitational lensing is a widely used probe in cosmological analysis. It
+allows astrophysists to understand the contend and evolution of the Universe.
+We are entering an era where we are not limitied by the data volume but by
+systematics. It is in this context that we are presenting here a simple python
+based software package to help in the computation of E-/B-mode decomposition
+which can be use for systematic checks or science analysis. As we demonstrate
+after, our implementation has both the high precision required and speed to
+perform this kind of analysis.
 
 # Statement of need
 
