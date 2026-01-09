@@ -94,10 +94,10 @@ Similarly, the impact on the COSEBIs is shown in \autoref{fig:EB_prec}.
 COSEBIs can also be defined from the power spectrum as:
 
 \begin{equation}
-E_{n} = \int_{0}^{\infty} \frac{d \ell \, \ell}{Z \pi} P_{E}(\ell)W_{n}(\ell);
+E_{n} = \int_{0}^{\infty} \frac{d \ell \, \ell}{2 \pi} P_{E}(\ell)W_{n}(\ell);
 \end{equation}
 \begin{equation}
-B_{n} = \int_{0}^{\infty} \frac{d \ell \, \ell}{Z \pi} P_{B}(\ell)W_{n}(\ell);
+B_{n} = \int_{0}^{\infty} \frac{d \ell \, \ell}{2 \pi} P_{B}(\ell)W_{n}(\ell);
 \end{equation}
 
 where $P_{E/B}(\ell)$ is the power spectrum of E- and B-modes and $W_{n}(\ell)$
