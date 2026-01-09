@@ -87,9 +87,9 @@ classic float64 precision would not be suficient, and with a precision of 80
 our code exactly recovers the results from the original implementation.
 Similarly, the impact on the COSEBIs is shown in \autoref{fig:EB_prec}.
 
-![In this figure we show the impact of the precision in the computation of the weight functions $T_{\pm}^{\rm{log}}$. For comparion, a precision of 15 corresponds to what would be achieved using `numpy` float64. The relative error is computed with respect to the original `Mathematica` implementation presented in @Schneider_2010.\label{fig:Tpm_prec}](cosebis_prec_Tpm.png)
+![In this figure we show the impact of the precision in the computation of the weight functions $T_{\pm}^{\rm{log}}$. For comparion, a precision of 15 corresponds to what would be achieved using `numpy` float64. The difference is computed with respect to the original `Mathematica` implementation presented in @Schneider_2010. The figure uses symlog, the shaded region represent the linear scale.\label{fig:Tpm_prec}](cosebis_prec_Tpm.png)
 
-![Same as figure \autoref{fig:Tpm_prec} for the COSEBIs E- and B-mode.\label{fig:EB_prec}](cosebis_prec_EB.png)
+![This figure shows the difference on the COSEBIs E- and B-mode relative to the original `Mathematica`implementation. We see that using only 15 decimal places would lead to several percent error making an implementation based on `numpy` float64 not sutable. The figure uses symlog, the shaded region represent the linear scale.\label{fig:EB_prec}](cosebis_prec_EB.png)
 
 COSEBIs can also be defined from the power spectrum as:
 
