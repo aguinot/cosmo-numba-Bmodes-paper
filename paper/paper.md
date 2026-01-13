@@ -59,6 +59,15 @@ correlation functions for cosmological inference, in which case the large
 number of calls to the likelihood function will also require a fast
 implementation.
 
+# Testing setup
+
+In the following two sections we will need fiducial shear-shear correlation
+functions, $\xi_{\pm}(\theta)$, and power spectrum, $P_{E/B}(\ell)$. They have
+been computed using the Core Cosmology Library[^1] [@Chisari_2019] developed
+by the Dark Energy Science Collaboration.
+
+[^1]: <https://github.com/LSSTDESC/CCL>
+
 # COSEBIs
 
 The COSEBIs are defined as:
