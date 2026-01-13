@@ -64,7 +64,8 @@ implementation.
 In the following two sections we will need fiducial shear-shear correlation
 functions, $\xi_{\pm}(\theta)$, and power spectrum, $P_{E/B}(\ell)$. They have
 been computed using the Core Cosmology Library[^1] [@Chisari_2019] developed
-by the Dark Energy Science Collaboration.
+by the Dark Energy Science Collaboration. The cosmological parameters are taken
+from @Planck_2018.
 
 [^1]: <https://github.com/LSSTDESC/CCL>
 
