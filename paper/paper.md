@@ -155,11 +155,14 @@ The functions $S_{\pm}(\theta)$ and $V_{\pm}(\theta)$ are themselves defined
 by integrals and we refer the reader to @Schneider_2022 for more details about
 their definition. By contrast with the computation of the COSEBIs, these
 integrals are more stable and straightforward to compute but still require
-some level of precision. This is why we are using the `quads` method with a
-5-th order spline interpolation. In addition, as one can see from the
-equations above, the implementation requires a loop over a range of
-$\vartheta$ values. This is why having a fast implementation will be required
-if one want to use those correlation functions in cosmological inference.
+some level of precision. This is why we are using the `qags` from the
+QUADPACK[^2] [@piessens2012quadpack] method with a 5-th order spline
+interpolation. In addition, as one can see from the equations above, the
+implementation requires a loop over a range of $\vartheta$ values. This is why
+having a fast implementation will be required if one want to use those
+correlation functions in cosmological inference.
+
+[^2]: We use C version of the library wrapped to python using Numba: <https://github.com/Nicholaswogan/NumbaQuadpack>
 
 ![This figure shows the decomposition of the shear-shear correaltion functions in E- and B-modes (and ambiguous mode).\label{fig:pure_EB}](pure_EB.png)
 
