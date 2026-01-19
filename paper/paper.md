@@ -60,8 +60,7 @@ implementation.
 
 In the following two sections we will need fiducial shear-shear correlation
 functions, $\xi_{\pm}(\theta)$, and power spectrum, $P_{E/B}(\ell)$. They have
-been computed using the Core Cosmology Library[^1] [@Chisari_2019]. # developed
-# by the LSST Dark Energy Science Collaboration.
+been computed using the Core Cosmology Library[^1] [@Chisari_2019]. 
 The cosmological parameters are taken
 from @Planck_2018. For tests that involved covariance we are using the Stage-IV
 Legacy Survey of Space and Time (LSST) Year 10 as a reference. The
