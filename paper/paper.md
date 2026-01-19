@@ -58,7 +58,7 @@ implementation.
 
 # Testing setup
 
-**In the following two sections we will need fiducial shear-shear correlation
+In the following two sections we will need fiducial shear-shear correlation
 functions, $\xi_{\pm}(\theta)$, and power spectrum, $P_{E/B}(\ell)$. They have
 been computed using the Core Cosmology Library[^1] [@Chisari_2019]. # developed
 # by the LSST Dark Energy Science Collaboration.
@@ -66,7 +66,7 @@ The cosmological parameters are taken
 from @Planck_2018. For tests that involved covariance we are using the Stage-IV
 Legacy Survey of Space and Time (LSST) Year 10 as a reference. The
 characteristics are taken from the LSST Dark Energy Science Collaboration (DESC) Science Requirements Document (SRD)
-[@LSST_SRD].**
+[@LSST_SRD].
 
 [^1]: <https://github.com/LSSTDESC/CCL>
 
@@ -100,16 +100,16 @@ the impact of the precision going from 15 decimal places, which corresponds to
 the precision one could achieve using float64, up to 80 decimal places, the
 precision used in the original `Mathematica` implementation. We can see that
 classic float64 precision would not be suficient, and with a precision of 80
-our code exactly recovers the results from the original implementation. **Given
+our code exactly recovers the results from the original implementation. Given
 that the precision comes at very little computational cost, we default to the
-original implementation using high precision.**
-**The impact of the precision propagated to the COSEBIs is shown in
+original implementation using high precision. 
+The impact of the precision propagated to the COSEBIs is shown in
 \autoref{fig:EB_prec}. We can see that using a lower precision than the default setting can incur a 
-several percent error.**
+several percent error.
 
-![In this figure we show the impact of the precision in the computation of the weight functions $T_{\pm}^{\rm{log}}$. For comparion, a precision of 15 corresponds to what would be achieved using `numpy` float64. The difference is computed with respect to the original `Mathematica` implementation presented in @Schneider_2010. **The figure uses symlog, with the shaded region representing the linear scale in the range $[-10^{-15}, 10^{-15}]$.**\label{fig:Tpm_prec}](cosebis_prec_Tpm.png)
+![In this figure we show the impact of the precision in the computation of the weight functions $T_{\pm}^{\rm{log}}$. For comparion, a precision of 15 corresponds to what would be achieved using `numpy` float64. The difference is computed with respect to the original `Mathematica` implementation presented in @Schneider_2010. The figure uses symlog, with the shaded region representing the linear scale in the range $[-10^{-15}, 10^{-15}]$.\label{fig:Tpm_prec}](cosebis_prec_Tpm.png)
 
-![**This figure shows the difference in the COSEBIs E- and B-modes relative to the original `Mathematica` implementation. We see that using only 15 decimal places would lead to several percent error, making an implementation based on `numpy` float64 not suitable. The figure uses symlog, with the shaded region representing the linear scale in the range $[-1,1]$ percent**.\label{fig:EB_prec}](cosebis_prec_EB.png)
+![This figure shows the difference in the COSEBIs E- and B-modes relative to the original `Mathematica` implementation. We see that using only 15 decimal places would lead to several percent error, making an implementation based on `numpy` float64 not suitable. The figure uses symlog, with the shaded region representing the linear scale in the range $[-1,1]$ percent.\label{fig:EB_prec}](cosebis_prec_EB.png)
 
 COSEBIs can also be defined from the power spectrum as:
 
@@ -132,12 +132,12 @@ is a Hankel transform of order 0. It can be computed using the `FFTLog`
 algorithm presented in @Hamilton_2000 implemented here in `Numba`.
 \autoref{fig:cosebis_xi_cl} shows the comparison between the COSEBIs computed
 from $\xi_{\pm}(\theta)$ and from $C_{E/B}(\ell)$. We can see that the COSEBI
-E- & B-modes agree very well, **with at most $0.3\sigma$ difference with
+E- & B-modes agree very well, with at most $0.3\sigma$ difference with
 respect to the LSST Y10 covariance. We consider that using either approach
 would not impact the scientific interpretation and both could be used for
-consistency checks.**
+consistency checks.
 
-![Comparison of the COSEBIs E- and B-mode computed from $\xi_{\pm}(\theta)$ and $C_{E/B}(\ell)$.**The _upper_ panel shows the COSEBIs E-/B-modes while the _bottom_ panel shows the difference with respect to the statistical uncertainty based on the LSST Y10 covariance.**\label{fig:cosebis_xi_cl}](cosebis_EB_xi_Cl.png)
+![Comparison of the COSEBIs E- and B-mode computed from $\xi_{\pm}(\theta)$ and $C_{E/B}(\ell)$. The _upper_ panel shows the COSEBIs E-/B-modes while the _bottom_ panel shows the difference with respect to the statistical uncertainty based on the LSST Y10 covariance.\label{fig:cosebis_xi_cl}](cosebis_EB_xi_Cl.png)
 
 # Pure-Mode Correlation Functions
 
@@ -163,14 +163,14 @@ The functions $S_{\pm}(\theta)$ and $V_{\pm}(\theta)$ are themselves defined
 by integrals and we refer the reader to @Schneider_2022 for more details about
 their definition. By contrast with the computation of the COSEBIs, these
 integrals are more stable and straightforward to compute but still require
-some level of precision. **This is why we are using the `qags` method from 
-QUADPACK[^2] [@piessens2012quadpack] with a 5th order spline interpolation.**
+some level of precision. This is why we are using the `qags` method from 
+QUADPACK[^2] [@piessens2012quadpack] with a 5th order spline interpolation.
 In addition, as one can see from the equations above, the implementation
 requires a loop over a range of $\vartheta$ values. This is why having a fast
 implementation will be required if one wants to use those correlation functions
-in cosmological inference. **In \autoref{fig:pure_EB} we show the decomposition
+in cosmological inference. In \autoref{fig:pure_EB} we show the decomposition
 of the shear-shear correlation function into the E-/B-modes correlation functions
-and ambiguous mode.**
+and ambiguous mode.
 
 [^2]: We use the C version of the library wrapped to python using Numba: <https://github.com/Nicholaswogan/NumbaQuadpack>
 
