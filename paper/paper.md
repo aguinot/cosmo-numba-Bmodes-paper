@@ -28,13 +28,10 @@ bibliography: paper.bib
 # Summary
 
 Weak gravitational lensing is a widely used probe in cosmological analysis. It
-allows astrophysists to understand the contend and evolution of the Universe.
-We are entering an era where we are not limitied by the data volume but by
-systematics. It is in this context that we are presenting here a simple python
-based software package to help in the computation of E-/B-mode decomposition
-which can be use for systematic checks or science analysis. As we demonstrate
-after, our implementation has both the high precision required and speed to
-perform this kind of analysis.
+allows astrophysists to understand the content and evolution of the Universe.
+We are entering an era where we are not limited by the data volume but by
+systematic uncertainties. It is in this context that we present here a simple python-based software package to help in the computation of E-/B-mode decomposition, which can be use for systematic checks or science analysis. As we demonstrate, our implementation has both the high precision required and speed to
+perform this kind of analysis while avoiding a scenario wherein either numerical precision or computational time is a significant limiting factor.
 
 # Statement of need
 
