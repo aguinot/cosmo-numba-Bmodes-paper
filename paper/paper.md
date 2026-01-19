@@ -109,7 +109,7 @@ original implementation using high precision.**
 \autoref{fig:EB_prec}. We can see that in the lower setting, it can lead to
 several percent error.**
 
-![In this figure we show the impact of the precision in the computation of the weight functions $T_{\pm}^{\rm{log}}$. For comparion, a precision of 15 corresponds to what would be achieved using `numpy` float64. The difference is computed with respect to the original `Mathematica` implementation presented in @Schneider_2010. The figure uses symlog, the shaded region represent the linear scale, strarting at $10^{-15}$ representing the `float64` precision for reference.\label{fig:Tpm_prec}](cosebis_prec_Tpm.png)
+![In this figure we show the impact of the precision in the computation of the weight functions $T_{\pm}^{\rm{log}}$. For comparion, a precision of 15 corresponds to what would be achieved using `numpy` float64. The difference is computed with respect to the original `Mathematica` implementation presented in @Schneider_2010. **The figure uses symlog, the shaded region represent the linear scale, strarting at $10^{-15}$ representing the `float64` precision for reference.**\label{fig:Tpm_prec}](cosebis_prec_Tpm.png)
 
 ![**This figure shows the difference on the COSEBIs E- and B-mode relative to the original `Mathematica`implementation. We see that using only 15 decimal places would lead to several percent error making an implementation based on `numpy` float64 not sutable. The figure uses symlog, the shaded region represent the linear scale, starting at 1% for reference**.\label{fig:EB_prec}](cosebis_prec_EB.png)
 
@@ -139,7 +139,7 @@ respect to the LSST Y10 covariance. We consider that using either approach
 would not impact the scientific interpretation and both could be used for
 consistency checks.**
 
-![Comparison of the COSEBIs E- and B-mode computed from $\xi_{\pm}(\theta)$ and $C_{E/B}(\ell)$.**The upper pannel shows the COSEBIs E-/B-modes while the bottom pannel shows the difference with respect to the LSST Y10 covariance.**\label{fig:cosebis_xi_cl}](cosebis_EB_xi_Cl.png)
+![Comparison of the COSEBIs E- and B-mode computed from $\xi_{\pm}(\theta)$ and $C_{E/B}(\ell)$.**The _upper_ pannel shows the COSEBIs E-/B-modes while the _bottom_ pannel shows the difference with respect to the LSST Y10 covariance.**\label{fig:cosebis_xi_cl}](cosebis_EB_xi_Cl.png)
 
 # Pure-Mode Correlation Functions
 
@@ -165,12 +165,14 @@ The functions $S_{\pm}(\theta)$ and $V_{\pm}(\theta)$ are themselves defined
 by integrals and we refer the reader to @Schneider_2022 for more details about
 their definition. By contrast with the computation of the COSEBIs, these
 integrals are more stable and straightforward to compute but still require
-some level of precision. This is why we are using the `qags` method from the
-QUADPACK[^2] [@piessens2012quadpack] with a 5-th order spline interpolation.
+some level of precision. **This is why we are using the `qags` method from the
+QUADPACK[^2] [@piessens2012quadpack] with a 5-th order spline interpolation.**
 In addition, as one can see from the equations above, the implementation
 requires a loop over a range of $\vartheta$ values. This is why having a fast
 implementation will be required if one want to use those correlation functions
-in cosmological inference.
+in cosmological inference. **In \autoref{fig:pure_EB} we show the decomposition
+of the shear-shear correlation function in the E-/B-modes correlation functions
+and ambiguous mode.**
 
 [^2]: We use the C version of the library wrapped to python using Numba: <https://github.com/Nicholaswogan/NumbaQuadpack>
 
