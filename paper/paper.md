@@ -30,8 +30,12 @@ bibliography: paper.bib
 Weak gravitational lensing is a widely used probe in cosmological analysis. It
 allows astrophysists to understand the content and evolution of the Universe.
 We are entering an era where we are not limited by the data volume but by
-systematic uncertainties. It is in this context that we present here a simple python-based software package to help in the computation of E-/B-mode decomposition, which can be use for systematic checks or science analysis. As we demonstrate, our implementation has both the high precision required and speed to
-perform this kind of analysis while avoiding a scenario wherein either numerical precision or computational time is a significant limiting factor.
+systematic uncertainties. It is in this context that we present here a simple
+python-based software package to help in the computation of E-/B-mode
+decomposition, which can be use for systematic checks or science analysis. As
+we demonstrate, our implementation has both the high precision required and
+speed to perform this kind of analysis while avoiding a scenario wherein either
+numerical precision or computational time is a significant limiting factor.
 
 # Statement of need
 
@@ -60,11 +64,11 @@ implementation.
 
 In the following two sections we will need fiducial shear-shear correlation
 functions, $\xi_{\pm}(\theta)$, and power spectrum, $P_{E/B}(\ell)$. They have
-been computed using the Core Cosmology Library[^1] [@Chisari_2019]. 
-The cosmological parameters are taken
-from @Planck_2018. For tests that involved covariance we are using the Stage-IV
-Legacy Survey of Space and Time (LSST) Year 10 as a reference. The
-characteristics are taken from the LSST Dark Energy Science Collaboration (DESC) Science Requirements Document (SRD)
+been computed using the Core Cosmology Library[^1] [@Chisari_2019].
+The cosmological parameters are taken from @Planck_2018. For tests that
+involved covariance we are using the Stage-IV Legacy Survey of Space and Time
+(LSST) Year 10 as a reference. The characteristics are taken from the LSST Dark
+Energy Science Collaboration (DESC) Science Requirements Document (SRD)
 [@LSST_SRD].
 
 [^1]: <https://github.com/LSSTDESC/CCL>
@@ -101,10 +105,10 @@ precision used in the original `Mathematica` implementation. We can see that
 classic float64 precision would not be suficient, and with a precision of 80
 our code exactly recovers the results from the original implementation. Given
 that the precision comes at very little computational cost, we default to the
-original implementation using high precision. 
+original implementation using high precision.
 The impact of the precision propagated to the COSEBIs is shown in
-\autoref{fig:EB_prec}. We can see that using a lower precision than the default setting can incur a 
-several percent error.
+\autoref{fig:EB_prec}. We can see that using a lower precision than the default
+setting can incur a several percent error.
 
 ![In this figure we show the impact of the precision in the computation of the weight functions $T_{\pm}^{\rm{log}}$. For comparion, a precision of 15 corresponds to what would be achieved using `numpy` float64. The difference is computed with respect to the original `Mathematica` implementation presented in @Schneider_2010. The figure uses symlog, with the shaded region representing the linear scale in the range $[-10^{-15}, 10^{-15}]$.\label{fig:Tpm_prec}](cosebis_prec_Tpm.png)
 
@@ -162,14 +166,14 @@ The functions $S_{\pm}(\theta)$ and $V_{\pm}(\theta)$ are themselves defined
 by integrals and we refer the reader to @Schneider_2022 for more details about
 their definition. By contrast with the computation of the COSEBIs, these
 integrals are more stable and straightforward to compute but still require
-some level of precision. This is why we are using the `qags` method from 
+some level of precision. This is why we are using the `qags` method from
 QUADPACK[^2] [@piessens2012quadpack] with a 5th order spline interpolation.
 In addition, as one can see from the equations above, the implementation
 requires a loop over a range of $\vartheta$ values. This is why having a fast
 implementation will be required if one wants to use those correlation functions
 in cosmological inference. In \autoref{fig:pure_EB} we show the decomposition
-of the shear-shear correlation function into the E-/B-modes correlation functions
-and ambiguous mode.
+of the shear-shear correlation function into the E-/B-modes correlation
+functions and ambiguous mode.
 
 [^2]: We use the C version of the library wrapped to python using Numba: <https://github.com/Nicholaswogan/NumbaQuadpack>
 
