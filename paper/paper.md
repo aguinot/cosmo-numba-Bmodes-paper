@@ -174,6 +174,14 @@ consistency checks.
 
 ![Comparison of the COSEBIs E- and B-mode computed from $\xi_{\pm}(\theta)$ and $C_{E/B}(\ell)$. The _upper_ panel shows the COSEBIs E-/B-modes while the _bottom_ panel shows the difference with respect to the statistical uncertainty based on the LSST Y10 covariance.\label{fig:cosebis_xi_cl}](cosebis_EB_xi_Cl.png)
 
+Finally, we have compared our implementation agains CosmoPipe[^3] which make
+use of a different integration method to compute the filter functions suche as
+Levin integration. We found that our implementation using numba is around 100
+times faster for equivalent precision.
+
+[^3]: The test has been done on a Mac M3 Max using 16 cores. The script to run
+the test is available at: !!!LINK HERE!!!
+
 # Pure-Mode Correlation Functions
 
 In this section we describe the computation of the pure-mode correlation
@@ -209,12 +217,21 @@ functions and ambiguous mode.
 
 ![This figure shows the decomposition of the shear-shear correlation functions into E- and B-modes (and ambiguous mode).\label{fig:pure_EB}](pure_EB.png)
 
+To asses the speed improvement of our implementation, we have run the same
+computation using `Scipy` functions: `CubicSpline` for the interpolation and
+`quad` for the integration[^4]. While the precision is comparable, our serial
+version is more than 8 time faster while the parallel version is more than 50
+times faster.
+
+[^4]: The test has been done on a Mac M3 Max using 16 cores. The script to run
+the test is available at: !!!LINK HERE!!!
+
 # Research impact statement
 
 This software is being in the Utraviolet Near Infrared Optical Northern Survey
 (UNIONS) to validate the catalogue used for cosmological analysis (REF: Daley
 et al. 2026).We are also planning to use this code in the Roman High Latitude
-Imaging Survey (HLIS). In addition its current usage in science collaboration,
+Imaging Survey (HLIS). In addition its current usage in science collaborations,
 we provide unit tests that not only validate the implementation but also
 validate the computation mathematically and provide a higher bound for the
 accuracy of the code. Fianlly, examples can be found in the code repo that
