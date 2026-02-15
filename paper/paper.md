@@ -207,7 +207,7 @@ by integrals and we refer the reader to @Schneider_2022 for more details about
 their definition. By contrast with the computation of the COSEBIs, these
 integrals are more stable and straightforward to compute but still require
 some level of precision. This is why we are using the `qags` method from
-QUADPACK[^2] [@piessens2012quadpack] with a 5th order spline interpolation.
+QUADPACK [@piessens2012quadpack] with a 5th order spline interpolation.
 In addition, as one can see from the equations above, the implementation
 requires a loop over a range of $\vartheta$ values. This is why having a fast
 implementation will be required if one wants to use those correlation functions
