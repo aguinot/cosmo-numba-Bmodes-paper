@@ -43,7 +43,7 @@ The E-/B-mode composition for cosmic shear poses a significant computational
 challenge given the need for high precision (required to integrate oscillatory
 functions over a large integration range and achieve accurate results) and
 speed. `Cosmo-numba` meets this need, facilitating the computation of
-E-/B-modes decomposition using two methods. One of them is the Complete
+E-/B-mode decomposition using two methods. One of them is the Complete
 Orthogonal Sets of E-/B-mode Integrals (COSEBIs) as presented in
 @Schneider_2010. The COSEBIs rely on very high precision computation requiring
 more than 80 decimal places. @Schneider_2010 propose an implementation using
@@ -55,25 +55,57 @@ facilitates the null tests.
 This software package also enables the computation of the  pure-mode
 correlation functions presented in @Schneider_2022. Those integrals are less
 numerically challenging than the COSEBIs, but having a fast computation is
-necessary for computing the covariance matrix. One can also use those
-correlation functions for cosmological inference, in which case the large
-number of calls to the likelihood function will also require a fast
-implementation.
+necessary for their integration in an inference pipeline. Indeed, one can use
+those correlation functions for cosmological inference, in which case the large
+number of calls to the likelihood function will require a fast implementation.
+
+# State of the field
+
+There are other implementations of the COSEBIs such as CosmoPipe[^1] used in
+the KiDS-legacy analysis [@kids_legacy]. Our implemetation is characterized by
+the use of `numba` that makes the computation of the filter functions described
+in \autoref{sec:cosebis} faster. Regarding the pure E-/B-mode decomposition we
+have not find a similar publicly available implementation. That being said,
+they are classicaly used as a one time measure for null tests in various
+surveys. The implementation we are presenting would enable one to use this
+decomposition for cosmological inference that requires computing several
+integrals at each likelyhood call. While commonly used library such as
+`Scipy` would make the computation untrackable, the speed gain by switching to
+`numba` open new perspectives such as this one.
+
+[^1]: <https://github.com/AngusWright/CosmoPipe>
+
+# Software design
+
+This package has been designed around two constraints: precision and speed. As
+it can be difficult to reach both at the same time, the code is partitioned in
+a way that parts requiring high precision are done using python library such as
+`sympy` and `mpmath`. While parts of the code that do not require high
+precision leverage the power of Just-In-Time (JIT) compilation. `Numba`
+provides significant speed up compare to a classic python implementation.
+As this library is entended to provide tools from cosmological computation, it
+was important to provide meaningful unit tests and demonstrate a full coverage
+of the library. Providing an accurate coverage is challenging when using
+`numba` compiled code. Our implementation allows to disbale compilation for
+tageted part of the code when performing coverage tests. This allows us to
+provide both high quality unit tests and good coverage to the users.
 
 # Testing setup
 
-In the following two sections we will need fiducial shear-shear correlation
+In the following two sections we make use of fiducial shear-shear correlation
 functions, $\xi_{\pm}(\theta)$, and power spectrum, $P_{E/B}(\ell)$. They have
-been computed using the Core Cosmology Library[^1] [@Chisari_2019].
+been computed using the Core Cosmology Library[^2] [@Chisari_2019].
 The cosmological parameters are taken from @Planck_2018. For tests that
 involved covariance we are using the Stage-IV Legacy Survey of Space and Time
 (LSST) Year 10 as a reference. The characteristics are taken from the LSST Dark
 Energy Science Collaboration (DESC) Science Requirements Document (SRD)
 [@LSST_SRD].
 
-[^1]: <https://github.com/LSSTDESC/CCL>
+[^2]: <https://github.com/LSSTDESC/CCL>
 
 # COSEBIs
+
+\label{sec:cosebis}
 
 The COSEBIs are defined as:
 
@@ -175,9 +207,25 @@ in cosmological inference. In \autoref{fig:pure_EB} we show the decomposition
 of the shear-shear correlation function into the E-/B-modes correlation
 functions and ambiguous mode.
 
-[^2]: We use the C version of the library wrapped to python using Numba: <https://github.com/Nicholaswogan/NumbaQuadpack>
-
 ![This figure shows the decomposition of the shear-shear correlation functions into E- and B-modes (and ambiguous mode).\label{fig:pure_EB}](pure_EB.png)
+
+# Research impact statement
+
+This software is being in the Utraviolet Near Infrared Optical Northern Survey
+(UNIONS) to validate the catalogue used for cosmological analysis (REF: Daley
+et al. 2026).We are also planning to use this code in the Roman High Latitude
+Imaging Survey (HLIS). In addition its current usage in science collaboration,
+we provide unit tests that not only validate the implementation but also
+validate the computation mathematically and provide a higher bound for the
+accuracy of the code. Fianlly, examples can be found in the code repo that
+provide comparison against alternative approach and implementation. They show
+that the computation presented here is significantly faster than existing
+alternatives.
+
+# AI usage disclosure
+
+Artificial Intelligence (AI) has been use to help with documentation,
+docstrings and for some of the unit tests.
 
 # Acknowledgements
 
