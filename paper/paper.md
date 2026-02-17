@@ -180,7 +180,7 @@ Levin integration. We found that our implementation using numba is around 100
 times faster for equivalent precision.
 
 [^3]: The test has been done on a Mac M3 Max using 16 cores. The script to run
-the test is available at: !!!LINK HERE!!!
+the test is available at: <https://github.com/aguinot/cosmo-numba/blob/main/notebooks/cosebis_comparison_with_cosmopipe.ipynb>
 
 # Pure-Mode Correlation Functions
 
@@ -224,7 +224,7 @@ version is more than 8 time faster while the parallel version is more than 50
 times faster.
 
 [^4]: The test has been done on a Mac M3 Max using 16 cores. The script to run
-the test is available at: !!!LINK HERE!!!
+the test is available at: <https://github.com/aguinot/cosmo-numba/blob/main/notebooks/pure_EB_modes_comparison_with_scipy.ipynb>
 
 # Research impact statement
 
