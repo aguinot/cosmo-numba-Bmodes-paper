@@ -229,12 +229,12 @@ the test is available at: <https://github.com/aguinot/cosmo-numba/blob/main/note
 # Research impact statement
 
 This software is being in the Utraviolet Near Infrared Optical Northern Survey
-(UNIONS) to validate the catalogue used for cosmological analysis (REF: Daley
-et al. 2026).We are also planning to use this code in the Roman High Latitude
-Imaging Survey (HLIS). In addition its current usage in science collaborations,
-we provide unit tests that not only validate the implementation but also
-validate the computation mathematically and provide a higher bound for the
-accuracy of the code. Fianlly, examples can be found in the code repo that
+(UNIONS) to validate the catalogue used for cosmological analysis
+[@unions_bmodes]. We are also planning to use this code in the Roman High
+Latitude Imaging Survey (HLIS). In addition its current usage in science
+collaborations, we provide unit tests that not only validate the implementation
+but also validate the computation mathematically and provide a higher bound for
+the accuracy of the code. Fianlly, examples can be found in the code repo that
 provide comparison against alternative approach and implementation. They show
 that the computation presented here is significantly faster than existing
 alternatives.
