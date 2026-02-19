@@ -33,8 +33,8 @@ We are entering an era where we are not limited by the data volume but by
 systematic uncertainties. It is in this context that we present here a simple
 python-based software package to help in the computation of E-/B-mode
 decomposition, which can be use for systematic checks or science analysis. As
-we demonstrate, our implementation has both the high precision required and
-speed to perform this kind of analysis while avoiding a scenario wherein either
+we demonstrate, our implementation has both the high precision and speed required
+to perform this kind of analysis while avoiding a scenario wherein either
 numerical precision or computational time is a significant limiting factor.
 
 # Statement of need
@@ -64,14 +64,14 @@ number of calls to the likelihood function will require a fast implementation.
 There are other implementations of the COSEBIs such as CosmoPipe[^1] used in
 the KiDS-legacy analysis [@kids_legacy]. Our implemetation is characterized by
 the use of `numba` that makes the computation of the filter functions described
-in \autoref{sec:cosebis} faster. Regarding the pure E-/B-mode decomposition we
-have not find a similar publicly available implementation. That being said,
-they are classicaly used as a one time measure for null tests in various
+in \autoref{sec:cosebis} faster. Regarding the pure E-/B-mode decomposition, we
+have not found a similar publicly available implementation. That being said,
+they are classicaly used as a one-time measure for null tests in various
 surveys. The implementation we are presenting would enable one to use this
-decomposition for cosmological inference that requires computing several
-integrals at each likelyhood call. While commonly used library such as
-`Scipy` would make the computation untrackable, the speed gain by switching to
-`numba` open new perspectives such as this one.
+decomposition for cosmological inference, which requires computing several
+integrals at each likelyhood call. While the commonly used 
+`scipy` library would make the computation untractable, the speed gain by switching to
+`numba` opens new opportunities such as this one.
 
 [^1]: <https://github.com/AngusWright/CosmoPipe>
 
@@ -79,24 +79,25 @@ integrals at each likelyhood call. While commonly used library such as
 
 This package has been designed around two constraints: precision and speed. As
 it can be difficult to reach both at the same time, the code is partitioned in
-a way that parts requiring high precision are done using python library such as
-`sympy` and `mpmath`. While parts of the code that do not require high
+a way that parts requiring high precision are done using python libraries such as
+`sympy` and `mpmath`. In contrast, parts of the code that do not require high
 precision leverage the power of Just-In-Time (JIT) compilation. `Numba`
-provides significant speed up compare to a classic python implementation.
-As this library is entended to provide tools from cosmological computation, it
+provides significant speed up compared to a classic python implementation.
+As this library is intended to provide tools for cosmological computation, it
 was important to provide meaningful unit tests and demonstrate a full coverage
 of the library. Providing an accurate coverage is challenging when using
-`numba` compiled code. Our implementation allows to disbale compilation for
-tageted part of the code when performing coverage tests. This allows us to
+`numba` compiled code. Our implementation allows the developer to disable
+compilation for the targeted part of the code when performing coverage tests.
+This allows us to
 provide both high quality unit tests and good coverage to the users.
 
 # Testing setup
 
 In the following two sections we make use of fiducial shear-shear correlation
-functions, $\xi_{\pm}(\theta)$, and power spectrum, $P_{E/B}(\ell)$. They have
+functions, $\xi_{\pm}(\theta)$, and power spectra, $P_{E/B}(\ell)$. They have
 been computed using the Core Cosmology Library[^2] [@Chisari_2019].
 The cosmological parameters are taken from @Planck_2018. For tests that
-involved covariance we are using the Stage-IV Legacy Survey of Space and Time
+involved covariances we are using the Stage-IV Legacy Survey of Space and Time
 (LSST) Year 10 as a reference. The characteristics are taken from the LSST Dark
 Energy Science Collaboration (DESC) Science Requirements Document (SRD)
 [@LSST_SRD].
@@ -134,7 +135,7 @@ We have validating our implementation against the original version in
 the impact of the precision going from 15 decimal places, which corresponds to
 the precision one could achieve using float64, up to 80 decimal places, the
 precision used in the original `Mathematica` implementation. We can see that
-classic float64 precision would not be suficient, and with a precision of 80
+classic float64 precision would not be sufficient, and with a precision of 80
 our code exactly recovers the results from the original implementation. Given
 that the precision comes at very little computational cost, we default to the
 original implementation using high precision.
@@ -175,7 +176,7 @@ consistency checks.
 ![Comparison of the COSEBIs E- and B-mode computed from $\xi_{\pm}(\theta)$ and $C_{E/B}(\ell)$. The _upper_ panel shows the COSEBIs E-/B-modes while the _bottom_ panel shows the difference with respect to the statistical uncertainty based on the LSST Y10 covariance.\label{fig:cosebis_xi_cl}](cosebis_EB_xi_Cl.png)
 
 Finally, we have compared our implementation agains CosmoPipe[^3] which make
-use of a different integration method to compute the filter functions suche as
+use of a different integration method to compute the filter functions such as
 Levin integration. We found that our implementation using numba is around 100
 times faster for equivalent precision.
 
@@ -185,7 +186,7 @@ the test is available at: <https://github.com/aguinot/cosmo-numba/blob/main/note
 # Pure-Mode Correlation Functions
 
 In this section we describe the computation of the pure-mode correlation
-functions as defined in @Schneider_2022. There are defined as follow:
+functions as defined in @Schneider_2022. These are defined as follows:
 
 \begin{equation}
 \xi_{+}^{E}(\vartheta) = \frac{1}{2} \left[ \xi_{+}(\vartheta) + \xi_{-}(\vartheta) + \int_{\vartheta}^{\vartheta_{\rm{max}}} \frac{d \theta}{\theta} \xi_{-}(\theta) \left( 4 - \frac{12\vartheta^{2}}{\theta^{2}} \right) \right] - \frac{1}{2} \left[ S_{+}(\vartheta) + S_{-}(\vartheta)\right],
@@ -217,7 +218,7 @@ functions and ambiguous mode.
 
 ![This figure shows the decomposition of the shear-shear correlation functions into E- and B-modes (and ambiguous mode).\label{fig:pure_EB}](pure_EB.png)
 
-To asses the speed improvement of our implementation, we have run the same
+To assess the speed improvement of our implementation, we have run the same
 computation using `Scipy` functions: `CubicSpline` for the interpolation and
 `quad` for the integration[^4]. While the precision is comparable, our serial
 version is more than 8 time faster while the parallel version is more than 50
@@ -231,11 +232,11 @@ the test is available at: <https://github.com/aguinot/cosmo-numba/blob/main/note
 This software is being in the Utraviolet Near Infrared Optical Northern Survey
 (UNIONS) to validate the catalogue used for cosmological analysis
 [@unions_bmodes]. We are also planning to use this code in the Roman High
-Latitude Imaging Survey (HLIS). In addition its current usage in science
+Latitude Imaging Survey (HLIS). In addition to its current usage in science
 collaborations, we provide unit tests that not only validate the implementation
 but also validate the computation mathematically and provide a higher bound for
-the accuracy of the code. Fianlly, examples can be found in the code repo that
-provide comparison against alternative approach and implementation. They show
+the accuracy of the code. Fianlly, examples can be found in the code repository that
+provide comparison against alternative approaches and implementations. They show
 that the computation presented here is significantly faster than existing
 alternatives.
 
