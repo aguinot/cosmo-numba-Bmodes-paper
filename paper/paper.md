@@ -33,9 +33,10 @@ We are entering an era where we are not limited by the data volume but by
 systematic uncertainties. It is in this context that we present here a simple
 python-based software package to help in the computation of E-/B-mode
 decomposition, which can be use for systematic checks or science analysis. As
-we demonstrate, our implementation has both the high precision and speed required
-to perform this kind of analysis while avoiding a scenario wherein either
-numerical precision or computational time is a significant limiting factor.
+we demonstrate, our implementation has both the high precision and speed
+required to perform this kind of analysis while avoiding a scenario wherein
+either numerical precision or computational time is a significant limiting
+factor.
 
 # Statement of need
 
@@ -69,9 +70,9 @@ have not found a similar publicly available implementation. That being said,
 they are classicaly used as a one-time measure for null tests in various
 surveys. The implementation we are presenting would enable one to use this
 decomposition for cosmological inference, which requires computing several
-integrals at each likelyhood call. While the commonly used 
-`scipy` library would make the computation untractable, the speed gain by switching to
-`numba` opens new opportunities such as this one.
+integrals at each likelyhood call. While the commonly used
+`scipy` library would make the computation untractable, the speed gain by
+switching to `numba` opens new opportunities such as this one.
 
 [^1]: <https://github.com/AngusWright/CosmoPipe>
 
@@ -79,9 +80,9 @@ integrals at each likelyhood call. While the commonly used
 
 This package has been designed around two constraints: precision and speed. As
 it can be difficult to reach both at the same time, the code is partitioned in
-a way that parts requiring high precision are done using python libraries such as
-`sympy` and `mpmath`. In contrast, parts of the code that do not require high
-precision leverage the power of Just-In-Time (JIT) compilation. `Numba`
+a way that parts requiring high precision are done using python libraries such
+as `sympy` and `mpmath`. In contrast, parts of the code that do not require
+high precision leverage the power of Just-In-Time (JIT) compilation. `Numba`
 provides significant speed up compared to a classic python implementation.
 As this library is intended to provide tools for cosmological computation, it
 was important to provide meaningful unit tests and demonstrate a full coverage
@@ -235,10 +236,10 @@ This software is being in the Utraviolet Near Infrared Optical Northern Survey
 Latitude Imaging Survey (HLIS). In addition to its current usage in science
 collaborations, we provide unit tests that not only validate the implementation
 but also validate the computation mathematically and provide a higher bound for
-the accuracy of the code. Fianlly, examples can be found in the code repository that
-provide comparison against alternative approaches and implementations. They show
-that the computation presented here is significantly faster than existing
-alternatives.
+the accuracy of the code. Fianlly, examples can be found in the code repository
+that provide comparison against alternative approaches and implementations.
+They show that the computation presented here is significantly faster than
+existing alternatives.
 
 # AI usage disclosure
 
