@@ -7,7 +7,6 @@ on:
       - completed
     branches:
       - main
-  workflow_dispatch:
 
 jobs:
   sync:
@@ -20,15 +19,24 @@ jobs:
         with:
           ref: main
 
-      - name: Copy paper files to cosmo-numba
-        uses: cpina/github-action-push-to-another-repository@v1.7.3
-        env:
-          API_TOKEN_GITHUB: ${{ secrets.COSMO_NUMBA_SYNC_TOKEN }}
+      - name: Checkout cosmo-numba
+        uses: actions/checkout@v4
         with:
-          source-directory: paper
-          destination-github-username: aguinot
-          destination-repository-name: cosmo-numba
-          target-directory: .
-          target-branch: main
-          commit-message: |
-            sync: update paper files from cosmo-numba-Bmodes-paper@${{ github.event.workflow_run.head_sha }}
+          repository: aguinot/cosmo-numba
+          token: ${{ secrets.COSMO_NUMBA_SYNC_TOKEN }}
+          path: cosmo-numba
+
+      - name: Copy paper files to cosmo-numba root
+        run: cp paper/* cosmo-numba/
+
+      - name: Commit and push to cosmo-numba
+        working-directory: cosmo-numba
+        env:
+          GH_TOKEN: ${{ secrets.COSMO_NUMBA_SYNC_TOKEN }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git diff --cached --quiet && echo "No changes to sync" && exit 0
+          git commit -m "sync: update paper files from cosmo-numba-Bmodes-paper@${{ github.event.workflow_run.head_sha }}"
+          git push
