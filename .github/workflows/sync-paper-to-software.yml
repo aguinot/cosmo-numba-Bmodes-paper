@@ -7,6 +7,7 @@ on:
       - completed
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   sync:
@@ -28,6 +29,6 @@ jobs:
           destination-github-username: aguinot
           destination-repository-name: cosmo-numba
           target-directory: .
-          destination-branch: main
+          target-branch: main
           commit-message: |
             sync: update paper files from cosmo-numba-Bmodes-paper@${{ github.event.workflow_run.head_sha }}
