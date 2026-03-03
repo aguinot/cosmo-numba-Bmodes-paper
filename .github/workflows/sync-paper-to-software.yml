@@ -38,5 +38,5 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add .
           git diff --cached --quiet && echo "No changes to sync" && exit 0
-          git commit -m "sync: update paper files from cosmo-numba-Bmodes-paper@${{ github.event.workflow_run.head_sha }}"
+          git commit -m "sync: update paper files from cosmo-numba-Bmodes-paper@${{ github.event.workflow_run.head_sha }} [skip ci]"
           git push
