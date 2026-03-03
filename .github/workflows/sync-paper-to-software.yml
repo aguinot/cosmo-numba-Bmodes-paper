@@ -27,7 +27,7 @@ jobs:
           path: cosmo-numba
 
       - name: Copy paper files to cosmo-numba root
-        run: cp paper cosmo-numba/
+        run: cp -r paper cosmo-numba/
 
       - name: Commit and push to cosmo-numba
         working-directory: cosmo-numba
