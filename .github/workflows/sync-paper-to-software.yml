@@ -1,0 +1,29 @@
+name: Sync paper files to cosmo-numba
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'paper/**'
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout paper repo
+        uses: actions/checkout@v4
+
+      - name: Copy paper files to cosmo-numba
+        uses: cpina/github-action-push-to-another-repository@v1.7.2
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.COSMO_NUMBA_SYNC_TOKEN }}
+        with:
+          source-directory: paper
+          destination-github-username: aguinot
+          destination-repository-name: cosmo-numba
+          target-directory: .
+          destination-branch: main
+          commit-message: |
+            sync: update paper files from cosmo-numba-Bmodes-paper@${{ github.sha }}
