@@ -13,27 +13,27 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Generate preprint TeX
-        uses: xuanxu/preprint-action@main
-        with:
-          repository_url: https://github.com/${{ github.repository }}
-          branch: ${{ github.ref_name }}
-          issue_id: ${{ github.run_id }}
-          journal: joss
-
-      - name: Move preprint into paper/ as paper.tex
+      - name: Generate preprint TeX via inara (Docker)
         shell: bash
         run: |
           set -euo pipefail
-          # preprint-action renames the output to: paper/joss-${issue_id}.preprint.tex
-          SRC="paper/joss-${{ github.run_id }}.preprint.tex"
-          if [ ! -f "$SRC" ]; then
-            echo "Expected preprint file not found at $SRC"
+
+          # Run inara to generate the preprint TeX from paper/paper.md
+          docker run --rm \
+            -v "$PWD":/data \
+            -u "$(id -u):$(id -g)" \
+            openjournals/inara \
+            -o preprint paper/paper.md
+
+          # inara typically writes: paper/paper.preprint.tex
+          if [ ! -f paper/paper.preprint.tex ]; then
+            echo "Expected output paper/paper.preprint.tex not found."
             echo "Contents of paper/:"
             ls -la paper || true
             exit 1
           fi
-          mv "$SRC" paper/paper.tex
+
+          mv paper/paper.preprint.tex paper/paper.tex
 
       - name: Commit TeX to repository
         uses: EndBug/add-and-commit@v9
