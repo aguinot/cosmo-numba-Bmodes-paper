@@ -2,7 +2,7 @@ name: Sync paper files to cosmo-numba
 
 on:
   workflow_run:
-    workflows: ["Draft PDF"]
+    workflows: ["Draft PDF", "Preprint TeX"]
     types:
       - completed
     branches:
